@@ -5,10 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.oddball.challenges.BadDayStreakController.BadDayStreak;
 
 class BadDayStreakControllerTest {
+	
+	private static final Logger logger = LoggerFactory.getLogger(BadDayStreakControllerTest.class);
 	
 	@Test
 	void test_findDateStreak_one() throws Exception {
@@ -212,7 +216,7 @@ class BadDayStreakControllerTest {
         List<Date> dates = convertDates(dateStrings);
         
 		BadDayStreak streak = BadDayStreakController.findDateStreak(1, dates);
-		System.out.println(streak);
+		logger.info("streak: " + streak);
 		
 		assertEquals(DateUtil.toLocalDate(DateUtil.toDate(date)), streak.startDate());
 		assertEquals(streakLength, streak.numDays());
