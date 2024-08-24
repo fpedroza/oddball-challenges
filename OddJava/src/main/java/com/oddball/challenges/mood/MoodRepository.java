@@ -18,5 +18,13 @@ public interface MoodRepository extends CrudRepository<Mood, Long> {
             order by m.user_id, m.date
           """, nativeQuery = true)
     Collection<Mood> findBadMoodDays(Date begin, Date end);
+    
+    @Query(value = """
+            select m.*
+            from moods m  
+            where m.mood in (1,2)
+            order by m.user_id, m.date
+          """, nativeQuery = true)
+    Collection<Mood> findBadMoodDays();
 }
 
